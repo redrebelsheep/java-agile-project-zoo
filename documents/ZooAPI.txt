@@ -1,0 +1,15 @@
+API
+
+Enclosure
+
+  GET
+    /zoo/enclosures -> Alle
+
+  POST
+    /zoo/enclosure
+
+  PUT
+    /zoo/enclosure/{id}
+
+  DELETE
+    /zoo/enclosure/{id}

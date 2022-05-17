@@ -1,0 +1,57 @@
+Anforderungen
+
+Datenbanken
+
+  Animals (Tiere)
+
+    - Genus (z.B. Löwe)
+    - Name
+    - SubsistenceCosts (Verpflegungskosten)
+    - Vet
+    - Enclosure (FK)
+
+  Enclosures (Gehege)
+
+    - Animals
+    - MaintenanceCosts (Instandhaltungskosten)
+    - Zookeepers (FK)
+
+  Staff (Mitarbeiter)
+
+    - Salary
+    - Name
+    - Job
+      Zookeeper (Tierpfleger)
+        - max 3 Gehege
+      Vet (Tierarzt)
+        - max 25 Tiere
+      Seller (Verkäufer)
+      Employee (Mitarbeiter)
+
+  Stalls (Verkaufsstände)
+
+    - Name
+    - Seller (FK Staff)
+    - OperatingCost
+    - Sales per Day  ->  DailyIncome
+    - Type
+        Food
+        Drinks
+        Souvenir
+
+  Account
+
+    - Income / Expenditure reason (z.B. Spende)
+    - Income / Expenditure (Einnahmen und Ausgaben)
+    - Date
+    - BankBalance (Kontostand)
+
+  Zoo (tägliche Geschäft)
+
+    - Visitors per Day
+    - Sales per Day
+    - Date
+    - Animal Count
+    - Staff Count
+
+-------------
