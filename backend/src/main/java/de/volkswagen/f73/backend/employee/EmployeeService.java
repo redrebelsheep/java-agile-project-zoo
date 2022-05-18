@@ -22,6 +22,7 @@ public class EmployeeService {
     private EnclosureRepository enclosureRepository;
     private AnimalRepository animalRepository;
     private StallRepository stallRepository;
+    private EmployeeMapper employeeMapper;
 
     /**
      * Gets all employees.
@@ -59,7 +60,8 @@ public class EmployeeService {
      * @return the optional
      */
     public Optional<Employee> addEmployee(EmployeeDTO employeeDTO) {
-        Employee employee = convertDTOtoEmployee(employeeDTO);
+        Employee employee = employeeMapper.convertDTOtoEmployee(employeeDTO,
+                enclosureRepository, animalRepository,  stallRepository );
         return Optional.of(employeeRepository.save(employee));
     }
 
@@ -84,7 +86,8 @@ public class EmployeeService {
      * @return the optional
      */
     public Optional<Employee> updateEmployee(EmployeeDTO employeeDTO) {
-        Employee employee = convertDTOtoEmployee(employeeDTO);
+        Employee employee = employeeMapper.convertDTOtoEmployee(employeeDTO,
+                enclosureRepository, animalRepository,  stallRepository );
         return Optional.of(employeeRepository.save(employee));
     }
 
@@ -98,21 +101,5 @@ public class EmployeeService {
         return employeeRepository.existsById(id);
     }
 
-    public Employee convertDTOtoEmployee(EmployeeDTO employeeDTO) {
-        Employee employee = Employee.builder().name(employeeDTO.getName()).Salary(employeeDTO.getSalary()).job(employeeDTO.getJob()).build();
-        if (employeeDTO.getEnclosures() != null && !employeeDTO.getEnclosures().isEmpty()) {
-            employee.setEnclosures(new HashSet<>(enclosureRepository.findAllById(employeeDTO.getEnclosures())));
-        }
-        if (employeeDTO.getResponsibilityAnimals() != null && !employeeDTO.getResponsibilityAnimals().isEmpty()) {
-            employee.setResponsibilityAnimals(new HashSet<>(animalRepository.findAllById(employeeDTO.getResponsibilityAnimals())));
-        }
-        if (employeeDTO.getStall() != null) {
-            employee.setStall(stallRepository.getById(employeeDTO.getStall()));
-        }
-        if (employeeDTO.getId() != null) {
-            employee.setId(employeeDTO.getId());
-        }
-        return employee;
-    }
 
 }

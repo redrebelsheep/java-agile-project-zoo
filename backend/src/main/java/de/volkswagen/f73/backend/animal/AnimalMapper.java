@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Getter
-@Setter
 public class AnimalMapper {
 
     public Animal convertDTOtoAnimal(AnimalDTO animalDTO, EnclosureRepository enclosureRepository, EmployeeRepository employeeRepository) {
