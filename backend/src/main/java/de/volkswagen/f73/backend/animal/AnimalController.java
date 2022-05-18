@@ -24,8 +24,8 @@ public class AnimalController {
      * @return the all animals
      */
     @GetMapping("/zoo/animals")
-    public ResponseEntity<List<Animal>> getAllAnimals() {
-        List<Animal> allAnimals = service.getAllAnimals();
+    public ResponseEntity<List<AnimalDTO>> getAllAnimals() {
+        List<AnimalDTO> allAnimals = service.getAllAnimals();
         return allAnimals.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(allAnimals);
     }
 
@@ -36,8 +36,8 @@ public class AnimalController {
      * @return the animal by id
      */
     @GetMapping("/zoo/animal/{id}")
-    public ResponseEntity<Animal> getAnimalById(@PathVariable Long id) {
-        Optional<Animal> animalById = service.getAnimalById(id);
+    public ResponseEntity<AnimalDTO> getAnimalById(@PathVariable Long id) {
+        Optional<AnimalDTO> animalById = service.getAnimalById(id);
         return animalById.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.noContent().build());
     }
 

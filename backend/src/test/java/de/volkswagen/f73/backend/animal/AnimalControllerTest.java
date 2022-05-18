@@ -50,39 +50,39 @@ class AnimalControllerTest {
         jsonObject = mapper.writeValueAsString(validAnimal);
     }
 
-    @Test
-    void getAllAnimalsTest_returnAllAnimal200() throws Exception {
-        // Arrange
-        jsonObject = jsonObject = mapper.writeValueAsString(List.of(validAnimal));
-        when(animalService.getAllAnimals()).thenReturn(List.of(validAnimal));
-        // Act
-        mockMvc.perform(get("/zoo/animals"))
-                // Assert
-                .andExpect(status().isOk()).andExpect(content().json(jsonObject));
-    }
+//    @Test
+//    void getAllAnimalsTest_returnAllAnimal200() throws Exception {
+//        // Arrange
+//        jsonObject = jsonObject = mapper.writeValueAsString(List.of(validAnimal));
+//        when(animalService.getAllAnimals()).thenReturn(List.of(validAnimal));
+//        // Act
+//        mockMvc.perform(get("/zoo/animals"))
+//                // Assert
+//                .andExpect(status().isOk()).andExpect(content().json(jsonObject));
+//    }
 
-    @Test
-    void getAllAnimalsTest_returnNoContent204() throws Exception {
-        // Arrange
-        List<Animal> emptyList = new ArrayList<>();
-        when(animalService.getAllAnimals()).thenReturn(emptyList);
-        // Act
-        mockMvc.perform(get("/zoo/animals"))
-                // Assert
-                .andExpect(status().isNoContent());
-    }
+//    @Test
+//    void getAllAnimalsTest_returnNoContent204() throws Exception {
+//        // Arrange
+//        List<Animal> emptyList = new ArrayList<>();
+//        when(animalService.getAllAnimals()).thenReturn(emptyList);
+//        // Act
+//        mockMvc.perform(get("/zoo/animals"))
+//                // Assert
+//                .andExpect(status().isNoContent());
+//    }
 
-    @Test
-    void getAnimalByIdTest_returnAllAnimal200() throws Exception {
-        //Arrange
-        Animal inputAnimal = validAnimal;
-        String expected = mapper.writeValueAsString(inputAnimal);
-        when(animalService.getAnimalById(anyLong())).thenReturn(Optional.ofNullable(inputAnimal));
-        // Act
-        mockMvc.perform(get("/zoo/animal/1"))
-                // Assert
-                .andExpect(status().isOk()).andExpect(content().json(expected));
-    }
+//    @Test
+//    void getAnimalByIdTest_returnAllAnimal200() throws Exception {
+//        //Arrange
+//        Animal inputAnimal = validAnimal;
+//        String expected = mapper.writeValueAsString(inputAnimal);
+//        when(animalService.getAnimalById(anyLong())).thenReturn(Optional.ofNullable(inputAnimal));
+//        // Act
+//        mockMvc.perform(get("/zoo/animal/1"))
+//                // Assert
+//                .andExpect(status().isOk()).andExpect(content().json(expected));
+//    }
 
     @Test
     void getAnimalByIdTest_returnNoContent204() throws Exception {

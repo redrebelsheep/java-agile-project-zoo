@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * The type Animal service.
@@ -18,14 +19,15 @@ public class AnimalService {
     private AnimalRepository animalRepository;
     private EmployeeRepository employeeRepository;
     private EnclosureRepository enclosureRepository;
+    private AnimalMapper animalMapper;
 
     /**
      * Gets all animals.
      *
      * @return the all animals
      */
-    public List<Animal> getAllAnimals() {
-        return animalRepository.findAll();
+    public List<AnimalDTO> getAllAnimals() {
+        return animalRepository.findAll().stream().map(animal -> animalMapper.convertAnimalToDTO(animal)).collect(Collectors.toList());
     }
 
     /**
@@ -35,7 +37,7 @@ public class AnimalService {
      * @return the optional
      */
     public Optional<Animal> addAnimal(AnimalDTO animalDTO) {
-        Animal animalToAdd = convertDTOtoAnimal(animalDTO);
+        Animal animalToAdd = animalMapper.convertDTOtoAnimal(animalDTO, enclosureRepository, employeeRepository);
         return Optional.of(animalRepository.save(animalToAdd));
     }
 
@@ -70,7 +72,7 @@ public class AnimalService {
      * @return the optional
      */
     public Optional<Animal> updateAnimal(AnimalDTO animalDTO) {
-        Animal animalToUpdate = convertDTOtoAnimal(animalDTO);
+        Animal animalToUpdate = animalMapper.convertDTOtoAnimal(animalDTO, enclosureRepository, employeeRepository);
         return Optional.of((animalRepository.save(animalToUpdate)));
     }
 
@@ -80,32 +82,33 @@ public class AnimalService {
      * @param id the id
      * @return the animal by id
      */
-    public Optional<Animal> getAnimalById(Long id) {
-        return animalRepository.findById(id);
+    public Optional<AnimalDTO> getAnimalById(Long id) {
+        Optional<Animal> getOptionalAnimal = animalRepository.findById(id);
+        return getOptionalAnimal.map(animal -> animalMapper.convertAnimalToDTO(animal));
     }
 
-    /**
-     * Convert dt oto animal animal.
-     *
-     * @param animalDTO the animal dto
-     * @return the animal
-     */
-    public Animal convertDTOtoAnimal(AnimalDTO animalDTO) {
-        Animal animalToReturn = Animal.builder().name(animalDTO.getName())
-                .species(animalDTO.getSpecies())
-                .subsistenceCosts(animalDTO.getSubsistenceCosts())
-                .build();
-        if (animalDTO.getEnclosure() != null) {
-            animalToReturn.setEnclosure(enclosureRepository.findById(animalDTO.getEnclosure()).get());
-        }
-        if (animalDTO.getVet() != null) {
-            animalToReturn.setVet(employeeRepository.findById(animalDTO.getVet()).get());
-        }
-        if (animalDTO.getId() != null) {
-            animalToReturn.setId(animalDTO.getId());
-        }
-        return animalToReturn;
-    }
+//    /**
+//     * Convert dt oto animal animal.
+//     *
+//     * @param animalDTO the animal dto
+//     * @return the animal
+//     */
+//    public Animal convertDTOtoAnimal(AnimalDTO animalDTO) {
+//        Animal animalToReturn = Animal.builder().name(animalDTO.getName())
+//                .species(animalDTO.getSpecies())
+//                .subsistenceCosts(animalDTO.getSubsistenceCosts())
+//                .build();
+//        if (animalDTO.getEnclosure() != null) {
+//            animalToReturn.setEnclosure(enclosureRepository.findById(animalDTO.getEnclosure()).get());
+//        }
+//        if (animalDTO.getVet() != null) {
+//            animalToReturn.setVet(employeeRepository.findById(animalDTO.getVet()).get());
+//        }
+//        if (animalDTO.getId() != null) {
+//            animalToReturn.setId(animalDTO.getId());
+//        }
+//        return animalToReturn;
+//    }
 
 
 }

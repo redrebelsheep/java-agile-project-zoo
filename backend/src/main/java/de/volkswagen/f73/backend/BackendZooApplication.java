@@ -29,14 +29,14 @@ import java.util.Set;
 @SpringBootApplication
 public class BackendZooApplication implements CommandLineRunner {
 
-/*    @Autowired
+   @Autowired
     private EnclosureRepository enclosureRepository;
     @Autowired
     private EmployeeRepository employeeRepository;
     @Autowired
     private AnimalRepository animalRepository;
     @Autowired
-    private StallRepository stallRepository;*/
+    private StallRepository stallRepository;
 
     public static void main(String[] args) throws JsonProcessingException {
         SpringApplication.run(BackendZooApplication.class, args);
@@ -46,7 +46,7 @@ public class BackendZooApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         //FOR DATA :
 
-/*        Enclosure enclosure = Enclosure.builder().name("Africa").maintenanceCosts(new BigDecimal("22.22")).build();
+        Enclosure enclosure = Enclosure.builder().name("Africa").maintenanceCosts(new BigDecimal("22.22")).build();
         Enclosure enclosure2 = Enclosure.builder().name("leerer").maintenanceCosts(new BigDecimal("22.22")).build();
         Employee employee = Employee.builder().name("Lars").job(Job.SELLER).Salary(new BigDecimal(2)).build();
         Employee employeeMarian = Employee.builder().name("mariantest").job(Job.KEEPER).Salary(new BigDecimal(2)).build();
@@ -67,7 +67,7 @@ public class BackendZooApplication implements CommandLineRunner {
         employeeRepository.save(validEmployee);
         enclosureRepository.save(validEnclosure);
         enclosureRepository.save(enclosure2);
-        stallRepository.save(validStall2);*/
+        stallRepository.save(validStall2);
 
         //-----------------FOR DATA
 
