@@ -25,8 +25,8 @@ public class EmployeeController {
      * @return the all employee
      */
     @GetMapping("/zoo/employees")
-    public ResponseEntity<List<Employee>> getAllEmployee() {
-        List<Employee> allEmployees = service.getAllEmployees();
+    public ResponseEntity<List<EmployeeDTO>> getAllEmployee() {
+        List<EmployeeDTO> allEmployees = service.getAllEmployees();
         return allEmployees.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(allEmployees);
     }
 
@@ -37,8 +37,8 @@ public class EmployeeController {
      * @return the all with job employee
      */
     @GetMapping("/zoo/employees/{job}")
-    public ResponseEntity<List<Employee>> getAllWithJobEmployee(@PathVariable String job) {
-        List<Employee> allEmployees = service.getWithJobEmployees(job);
+    public ResponseEntity<List<EmployeeDTO>> getAllWithJobEmployee(@PathVariable String job) {
+        List<EmployeeDTO> allEmployees = service.getWithJobEmployees(job);
         return allEmployees.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(allEmployees);
     }
 
@@ -49,8 +49,8 @@ public class EmployeeController {
      * @return the employee by id
      */
     @GetMapping("/zoo/employee/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
-        Optional<Employee> oneEmployee = service.getEmployeeById(id);
+    public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable Long id) {
+        Optional<EmployeeDTO> oneEmployee = service.getEmployeeById(id);
         return oneEmployee.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.noContent().build());
     }
 

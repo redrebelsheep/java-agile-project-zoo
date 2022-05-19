@@ -42,35 +42,14 @@ public class Employee implements Serializable {
 
     @ManyToMany(mappedBy = "staff")
     @Builder.Default
-    @Getter(AccessLevel.NONE)
     private Set<Enclosure> enclosures = new HashSet<>();
 
     @OneToMany(mappedBy = "vet", cascade = CascadeType.MERGE)
     @Builder.Default
-    @Getter(AccessLevel.NONE)
     private Set<Animal> responsibilityAnimals = new HashSet<>();
 
     @OneToOne(mappedBy = "seller", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIdentityReference(alwaysAsId = true)
     private Stall stall;
-
-
-    /**
-     * Gets responsibility animals.
-     *
-     * @return the responsibility animals
-     */
-    public Set<Long> getResponsibilityAnimals() {
-        return responsibilityAnimals.stream().map(Animal::getId).collect(Collectors.toSet());
-    }
-
-    /**
-     * Gets enclosures.
-     *
-     * @return the enclosures
-     */
-    public Set<Long> getEnclosures() {
-        return enclosures.stream().map(Enclosure::getId).collect(Collectors.toSet());
-    }
 
 }

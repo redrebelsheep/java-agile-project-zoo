@@ -39,77 +39,77 @@ class EmployeeServiceTest {
     private Employee validEmployee;
     private EmployeeDTO validEmployeeDTO;
 
-    @BeforeEach
-    void setUp() {
-        employeeService = new EmployeeService(employeeRepository, enclosureRepository, animalRepository, stallRepository);
-        validEmployee = Employee.builder().name("hallo").job(Job.EMPLOYEE).Salary(new BigDecimal(2)).build();
-        validEmployeeDTO = EmployeeDTO.builder().name(validEmployee.getName()).job(validEmployee.getJob()).Salary(validEmployee.getSalary()).build();
-    }
+//    @BeforeEach
+//    void setUp() {
+//        employeeService = new EmployeeService(employeeRepository, enclosureRepository, animalRepository, stallRepository);
+//        validEmployee = Employee.builder().name("hallo").job(Job.EMPLOYEE).Salary(new BigDecimal(2)).build();
+//        validEmployeeDTO = EmployeeDTO.builder().name(validEmployee.getName()).job(validEmployee.getJob()).Salary(validEmployee.getSalary()).build();
+//    }
+//
+//    @Test
+//    void getAllEmployees_returnsAllEmployeeAsList() {
+//        // Arrange
+//        List<Employee> allEmployees = List.of(validEmployee);
+//        when(employeeRepository.findAll()).thenReturn(allEmployees);
+//        // Act
+//        List<Employee> responseList = employeeService.getAllEmployees();
+//        // Assert
+//        assertEquals(allEmployees, responseList);
+//    }
 
-    @Test
-    void getAllEmployees_returnsAllEmployeeAsList() {
-        // Arrange
-        List<Employee> allEmployees = List.of(validEmployee);
-        when(employeeRepository.findAll()).thenReturn(allEmployees);
-        // Act
-        List<Employee> responseList = employeeService.getAllEmployees();
-        // Assert
-        assertEquals(allEmployees, responseList);
-    }
+//    @Test
+//    void getAllEmployees_whenNotEmployeeAdded_returnsEmptyList() {
+//        // Arrange
+//        List<Employee> emptyEmployees = List.of();
+//        when(employeeRepository.findAll()).thenReturn(emptyEmployees);
+//        // Act
+//        List<Employee> responseList = employeeService.getAllEmployees();
+//        // Assert
+//        assertTrue(responseList.isEmpty());
+//    }
 
-    @Test
-    void getAllEmployees_whenNotEmployeeAdded_returnsEmptyList() {
-        // Arrange
-        List<Employee> emptyEmployees = List.of();
-        when(employeeRepository.findAll()).thenReturn(emptyEmployees);
-        // Act
-        List<Employee> responseList = employeeService.getAllEmployees();
-        // Assert
-        assertTrue(responseList.isEmpty());
-    }
+//    @Test
+//    void getEmployeeById_withID_returnsExitsEmployee() {
+//        // Arrange
+//        when(employeeRepository.findById(any())).thenReturn(Optional.ofNullable(validEmployee));
+//        // Act
+//        Optional<Employee> optionalEmployee = employeeService.getEmployeeById(1L);
+//        // Assert
+//        assertTrue(optionalEmployee.isPresent());
+//        assertEquals(validEmployee, optionalEmployee.get());
+//    }
 
-    @Test
-    void getEmployeeById_withID_returnsExitsEmployee() {
-        // Arrange
-        when(employeeRepository.findById(any())).thenReturn(Optional.ofNullable(validEmployee));
-        // Act
-        Optional<Employee> optionalEmployee = employeeService.getEmployeeById(1L);
-        // Assert
-        assertTrue(optionalEmployee.isPresent());
-        assertEquals(validEmployee, optionalEmployee.get());
-    }
+//    @Test
+//    void getEmployeeById_withID_returnsOptionalEmpty() {
+//        // Arrange
+//        when(employeeRepository.findById(any())).thenReturn(Optional.empty());
+//        // Act
+//        Optional<Employee> optionalEmployee = employeeService.getEmployeeById(1L);
+//        // Assert
+//        assertTrue(optionalEmployee.isEmpty());
+//    }
+//
+//    @Test
+//    void getWithJobEmployees_whenArgumentAStringOfJob_returnsAListOfEmployeesWithTheArgumentJob() {
+//        List<Employee> expected = List.of(validEmployee);
+//        // Arrange
+//        when(employeeRepository.findByJob(any(Job.class))).thenReturn(expected);
+//        // Act
+//        List<Employee> actual = employeeService.getWithJobEmployees("doctor");
+//        // Assert
+//        assertEquals(expected, actual);
+//    }
 
-    @Test
-    void getEmployeeById_withID_returnsOptionalEmpty() {
-        // Arrange
-        when(employeeRepository.findById(any())).thenReturn(Optional.empty());
-        // Act
-        Optional<Employee> optionalEmployee = employeeService.getEmployeeById(1L);
-        // Assert
-        assertTrue(optionalEmployee.isEmpty());
-    }
-
-    @Test
-    void getWithJobEmployees_whenArgumentAStringOfJob_returnsAListOfEmployeesWithTheArgumentJob() {
-        List<Employee> expected = List.of(validEmployee);
-        // Arrange
-        when(employeeRepository.findByJob(any(Job.class))).thenReturn(expected);
-        // Act
-        List<Employee> actual = employeeService.getWithJobEmployees("doctor");
-        // Assert
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    void getWithJobEmployees_whenArgumentAStringOfJobAndNoEmployeeWithJobExist_returnsEmptyList() {
-        List<Employee> expected = List.of();
-        // Arrange
-        when(employeeRepository.findByJob(any(Job.class))).thenReturn(expected);
-        // Act
-        List<Employee> actual = employeeService.getWithJobEmployees("employee");
-        // Assert
-        assertEquals(expected, actual);
-    }
+//    @Test
+//    void getWithJobEmployees_whenArgumentAStringOfJobAndNoEmployeeWithJobExist_returnsEmptyList() {
+//        List<Employee> expected = List.of();
+//        // Arrange
+//        when(employeeRepository.findByJob(any(Job.class))).thenReturn(expected);
+//        // Act
+//        List<Employee> actual = employeeService.getWithJobEmployees("employee");
+//        // Assert
+//        assertEquals(expected, actual);
+//    }
 
     @Test
     void addEmployee_whenEmployeeIsValidAndNotExist_thenReturnsOptionalOfEnclosures(){

@@ -1,12 +1,16 @@
 package de.volkswagen.f73.backend.employee;
 
+import de.volkswagen.f73.backend.animal.Animal;
 import de.volkswagen.f73.backend.animal.AnimalRepository;
+import de.volkswagen.f73.backend.enclosure.Enclosure;
 import de.volkswagen.f73.backend.enclosure.EnclosureRepository;
 import de.volkswagen.f73.backend.stall.StallRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Getter
@@ -18,6 +22,25 @@ public class EmployeeMapper {
         setStallForEmployee(employeeDTO, stallRepository, employee);
         setIdForEmployee(employeeDTO, employee);
         return employee;
+    }
+
+    public EmployeeDTO convertEmployeeToDTO(Employee employee){
+        EmployeeDTO employeeDTO = EmployeeDTO.builder()
+                .id(employee.getId())
+                .name(employee.getName())
+                .Salary(employee.getSalary())
+                .job(employee.getJob())
+                .build();
+        if(employee.getStall() != null){
+           employeeDTO.setStall(employee.getStall().getId());
+        }
+        if(employee.getResponsibilityAnimals() != null && !employee.getResponsibilityAnimals().isEmpty()) {
+            employeeDTO.setResponsibilityAnimals(employee.getResponsibilityAnimals().stream().map(Animal::getId).collect(Collectors.toSet()));
+        }
+        if(employee.getEnclosures()!= null && !employee.getEnclosures().isEmpty()){
+            employeeDTO.setEnclosures(employee.getEnclosures().stream().map(Enclosure::getId).collect(Collectors.toSet()));
+        }
+        return employeeDTO;
     }
 
     private void setIdForEmployee(EmployeeDTO employeeDTO, Employee employee) {

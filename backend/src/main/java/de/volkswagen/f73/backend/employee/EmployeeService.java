@@ -1,6 +1,7 @@
 package de.volkswagen.f73.backend.employee;
 
 
+import de.volkswagen.f73.backend.animal.Animal;
 import de.volkswagen.f73.backend.animal.AnimalRepository;
 import de.volkswagen.f73.backend.enclosure.EnclosureRepository;
 import de.volkswagen.f73.backend.stall.StallRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * The type Employee service.
@@ -29,8 +31,9 @@ public class EmployeeService {
      *
      * @return the all employees
      */
-    public List<Employee> getAllEmployees() {
-        return employeeRepository.findAll();
+    public List<EmployeeDTO> getAllEmployees() {
+        return employeeRepository.findAll()
+                .stream().map(employee -> employeeMapper.convertEmployeeToDTO(employee)).collect(Collectors.toList());
     }
 
     /**
@@ -39,8 +42,9 @@ public class EmployeeService {
      * @param job the job
      * @return the with job employees
      */
-    public List<Employee> getWithJobEmployees(String job) {
-        return employeeRepository.findByJob(Job.getTheRightEnum(job));
+    public List<EmployeeDTO> getWithJobEmployees(String job) {
+        return employeeRepository.findByJob(Job.getTheRightEnum(job))
+                .stream().map(employee -> employeeMapper.convertEmployeeToDTO(employee)).collect(Collectors.toList());
     }
 
     /**
@@ -49,8 +53,9 @@ public class EmployeeService {
      * @param id the id
      * @return the employee by id
      */
-    public Optional<Employee> getEmployeeById(Long id) {
-        return employeeRepository.findById(id);
+    public Optional<EmployeeDTO> getEmployeeById(Long id) {
+        Optional<Employee> optionalEmployee = employeeRepository.findById(id);
+        return optionalEmployee.map(employee -> employeeMapper.convertEmployeeToDTO(employee));
     }
 
     /**

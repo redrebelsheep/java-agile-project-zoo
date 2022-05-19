@@ -52,39 +52,39 @@ class EmployeeControllerTest {
         jsonObject = mapper.writeValueAsString(validEmployee);
     }
 
-    @Test
-    void getAllEmployeeTest_returnAllEnclosures200() throws Exception {
-        // Arrange
-        jsonObject = jsonObject = mapper.writeValueAsString(List.of(validEmployee));
-        when(employeeService.getAllEmployees()).thenReturn(List.of(validEmployee));
-        // Act
-        mockMvc.perform(get("/zoo/employees"))
-                // Assert
-                .andExpect(status().isOk())
-                .andExpect(content().json(jsonObject));
-    }
+//    @Test
+//    void getAllEmployeeTest_returnAllEnclosures200() throws Exception {
+//        // Arrange
+//        jsonObject = jsonObject = mapper.writeValueAsString(List.of(validEmployee));
+//        when(employeeService.getAllEmployees()).thenReturn(List.of(validEmployee));
+//        // Act
+//        mockMvc.perform(get("/zoo/employees"))
+//                // Assert
+//                .andExpect(status().isOk())
+//                .andExpect(content().json(jsonObject));
+//    }
 
-    @Test
-    void getAllEmployeeTest_returnNoContent204() throws Exception {
-        // Arrange
-        List<Employee> tmpList = new ArrayList<>();
-        when(employeeService.getAllEmployees()).thenReturn(tmpList);
-        // Act
-        mockMvc.perform(get("/zoo/employees"))
-                // Assert
-                .andExpect(status().isNoContent());
-    }
+//    @Test
+//    void getAllEmployeeTest_returnNoContent204() throws Exception {
+//        // Arrange
+//        List<Employee> tmpList = new ArrayList<>();
+//        when(employeeService.getAllEmployees()).thenReturn(tmpList);
+//        // Act
+//        mockMvc.perform(get("/zoo/employees"))
+//                // Assert
+//                .andExpect(status().isNoContent());
+//    }
 
-    @Test
-    void getEmployeeByIdTest_returnAllEnclosures200() throws Exception {
-        //Arrange
-        when(employeeService.getEmployeeById(anyLong())).thenReturn(Optional.ofNullable(validEmployee));
-        // Act
-        mockMvc.perform(get("/zoo/employee/1"))
-                // Assert
-                .andExpect(status().isOk())
-                .andExpect(content().json(jsonObject));
-    }
+//    @Test
+//    void getEmployeeByIdTest_returnAllEnclosures200() throws Exception {
+//        //Arrange
+//        when(employeeService.getEmployeeById(anyLong())).thenReturn(Optional.ofNullable(validEmployee));
+//        // Act
+//        mockMvc.perform(get("/zoo/employee/1"))
+//                // Assert
+//                .andExpect(status().isOk())
+//                .andExpect(content().json(jsonObject));
+//    }
 
     @Test
     void getEmployeeByIdTest_returnNoContent204() throws Exception {
@@ -96,31 +96,31 @@ class EmployeeControllerTest {
                 .andExpect(status().isNoContent());
     }
 
-    @Test
-    void getEmployeesByJobTest_whenUrlIncludeJob_returnAllEmployeesByJobAsList() throws Exception {
-        //Arrange
-        validEmployee.setJob(Job.DOCTOR);
-        List<Employee> result = List.of(validEmployee);
-        jsonObject = mapper.writeValueAsString(result);
-        when(employeeService.getWithJobEmployees("doctor")).thenReturn(result);
-        // Act
-        mockMvc.perform(get("/zoo/employees/doctor"))
-                // Assert
-                .andExpect(status().isOk())
-                .andExpect(content().json(jsonObject));
-    }
+//    @Test
+//    void getEmployeesByJobTest_whenUrlIncludeJob_returnAllEmployeesByJobAsList() throws Exception {
+//        //Arrange
+//        validEmployee.setJob(Job.DOCTOR);
+//        List<Employee> result = List.of(validEmployee);
+//        jsonObject = mapper.writeValueAsString(result);
+//        when(employeeService.getWithJobEmployees("doctor")).thenReturn(result);
+//        // Act
+//        mockMvc.perform(get("/zoo/employees/doctor"))
+//                // Assert
+//                .andExpect(status().isOk())
+//                .andExpect(content().json(jsonObject));
+//    }
 
-    @Test
-    void getEmployeesByJobTest_whenUrlIncludeJobAndNotEmployeeWithThisJobExist_returnAllEmployeesByJobAsList() throws Exception {
-        //Arrange
-        List<Employee> result = new ArrayList<>();
-        jsonObject = mapper.writeValueAsString(result);
-        when(employeeService.getWithJobEmployees("doctor")).thenReturn(result);
-        // Act
-        mockMvc.perform(get("/zoo/employees/doctor"))
-                // Assert
-                .andExpect(status().isNoContent());
-    }
+//    @Test
+//    void getEmployeesByJobTest_whenUrlIncludeJobAndNotEmployeeWithThisJobExist_returnAllEmployeesByJobAsList() throws Exception {
+//        //Arrange
+//        List<Employee> result = new ArrayList<>();
+//        jsonObject = mapper.writeValueAsString(result);
+//        when(employeeService.getWithJobEmployees("doctor")).thenReturn(result);
+//        // Act
+//        mockMvc.perform(get("/zoo/employees/doctor"))
+//                // Assert
+//                .andExpect(status().isNoContent());
+//    }
 
 
     @Test

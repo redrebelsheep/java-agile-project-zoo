@@ -27,7 +27,8 @@ public class AnimalService {
      * @return the all animals
      */
     public List<AnimalDTO> getAllAnimals() {
-        return animalRepository.findAll().stream().map(animal -> animalMapper.convertAnimalToDTO(animal)).collect(Collectors.toList());
+        return animalRepository.findAll()
+                .stream().map(animal -> animalMapper.convertAnimalToDTO(animal)).collect(Collectors.toList());
     }
 
     /**
