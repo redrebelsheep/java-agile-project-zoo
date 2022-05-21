@@ -31,16 +31,28 @@ public class EmployeeMapper {
                 .Salary(employee.getSalary())
                 .job(employee.getJob())
                 .build();
+        setStallForDTO(employee, employeeDTO);
+        setAnimalsForDTO(employee, employeeDTO);
+        setEnclosuresForDTO(employee, employeeDTO);
+        return employeeDTO;
+    }
+
+    private void setStallForDTO(Employee employee, EmployeeDTO employeeDTO) {
         if(employee.getStall() != null){
            employeeDTO.setStall(employee.getStall().getId());
         }
+    }
+
+    private void setAnimalsForDTO(Employee employee, EmployeeDTO employeeDTO) {
         if(employee.getResponsibilityAnimals() != null && !employee.getResponsibilityAnimals().isEmpty()) {
             employeeDTO.setResponsibilityAnimals(employee.getResponsibilityAnimals().stream().map(Animal::getId).collect(Collectors.toSet()));
         }
+    }
+
+    private void setEnclosuresForDTO(Employee employee, EmployeeDTO employeeDTO) {
         if(employee.getEnclosures()!= null && !employee.getEnclosures().isEmpty()){
             employeeDTO.setEnclosures(employee.getEnclosures().stream().map(Enclosure::getId).collect(Collectors.toSet()));
         }
-        return employeeDTO;
     }
 
     private void setIdForEmployee(EmployeeDTO employeeDTO, Employee employee) {

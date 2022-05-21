@@ -1,16 +1,14 @@
 package de.volkswagen.f73.backend.enclosure;
 
 import de.volkswagen.f73.backend.animal.AnimalRepository;
+import de.volkswagen.f73.backend.employee.Employee;
 import de.volkswagen.f73.backend.employee.EmployeeRepository;
-import de.volkswagen.f73.backend.stall.Stall;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * The type Enclosure service.
@@ -22,14 +20,28 @@ public class EnclosureService {
     private EnclosureRepository enclosureRepository;
     private EmployeeRepository employeeRepository;
     private AnimalRepository animalRepository;
+    private EnclosureMapper enclosureMapper;
 
     /**
      * Gets all enclosures.
      *
      * @return the all enclosures
      */
-    public List<Enclosure> getAllEnclosures() {
-        return enclosureRepository.findAll();
+    public List<EnclosureDTO> getAllEnclosures() {
+        return enclosureRepository.findAll()
+                .stream().map(enclosure -> enclosureMapper.convertEnclosureToDTO(enclosure)).collect(Collectors.toList());
+    }
+
+
+    /**
+     * Gets enclosure by id.
+     *
+     * @param id the id
+     * @return the enclosure by id
+     */
+    public Optional<EnclosureDTO> getEnclosureById(Long id) {
+        Optional<Enclosure> optionalEnClosure = enclosureRepository.findById(id);
+        return optionalEnClosure.map(enclosure -> enclosureMapper.convertEnclosureToDTO(enclosure));
     }
 
     /**
@@ -40,7 +52,7 @@ public class EnclosureService {
      */
     public Optional<Enclosure> addEnclosure(EnclosureDTO enclosureDTO) {
 
-        Enclosure enclosureToAdd = convertDTOtoEnclosure(enclosureDTO);
+        Enclosure enclosureToAdd = enclosureMapper.convertDTOtoEnclosure(enclosureDTO,employeeRepository, animalRepository );
 
         return Optional.of(enclosureRepository.save(enclosureToAdd));
     }
@@ -66,7 +78,7 @@ public class EnclosureService {
      * @return the optional
      */
     public Optional<Enclosure> updateEnclosure(EnclosureDTO enclosureDTO) {
-        Enclosure enclosureToUpdate = convertDTOtoEnclosure(enclosureDTO);
+        Enclosure enclosureToUpdate =  enclosureMapper.convertDTOtoEnclosure(enclosureDTO,employeeRepository, animalRepository );
         return Optional.of(enclosureRepository.save(enclosureToUpdate));
     }
 
@@ -80,29 +92,4 @@ public class EnclosureService {
         return enclosureRepository.existsById(id);
     }
 
-    /**
-     * Gets enclosure by id.
-     *
-     * @param id the id
-     * @return the enclosure by id
-     */
-    public Optional<Enclosure> getEnclosureById(Long id) {
-        return enclosureRepository.findById(id);
-    }
-
-    private Enclosure convertDTOtoEnclosure(EnclosureDTO enclosureDTO) {
-        Enclosure enclosure = Enclosure.builder()
-                .name(enclosureDTO.getName())
-                .maintenanceCosts(enclosureDTO.getMaintenanceCosts()).build();
-        if (enclosureDTO.getStaff() != null && !enclosureDTO.getStaff().isEmpty()) {
-            enclosure.setStaff(new HashSet<>(employeeRepository.findAllById(enclosureDTO.getStaff())));
-        }
-        if (enclosureDTO.getAnimals() != null && !enclosureDTO.getAnimals().isEmpty()) {
-            enclosure.setAnimals(new HashSet<>(animalRepository.findAllById(enclosureDTO.getAnimals())));
-        }
-        if (enclosureDTO.getId() != null) {
-            enclosure.setId(enclosureDTO.getId());
-        }
-        return enclosure;
-    }
 }

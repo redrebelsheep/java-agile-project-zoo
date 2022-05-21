@@ -25,7 +25,6 @@ import java.util.stream.Collectors;
 @ToString
 @Setter
 @Getter
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Long.class)
 public class Enclosure implements Serializable {
 
     @Id
@@ -42,29 +41,10 @@ public class Enclosure implements Serializable {
             joinColumns = @JoinColumn(name = "enclosure_id"),
             inverseJoinColumns = @JoinColumn(name = "employee_id"))
     @Builder.Default
-    @Getter(AccessLevel.NONE)
     private Set<Employee> staff = new HashSet<>();
 
     @OneToMany(mappedBy = "enclosure", cascade = CascadeType.DETACH )
     @Builder.Default
-    @Getter(AccessLevel.NONE)
     private Set<Animal> animals = new HashSet<>();
 
-    /**
-     * Gets staff.
-     *
-     * @return the staff
-     */
-    public Set<Long> getStaff() {
-        return staff.stream().map(Employee::getId).collect(Collectors.toSet());
-    }
-
-    /**
-     * Gets animals.
-     *
-     * @return the animals
-     */
-    public Set<Long> getAnimals() {
-        return animals.stream().map(Animal::getId).collect(Collectors.toSet());
-    }
 }

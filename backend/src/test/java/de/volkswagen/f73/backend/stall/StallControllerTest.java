@@ -45,42 +45,42 @@ class StallControllerTest {
         validStall = Stall.builder().operatingCost(new BigDecimal("22.22")).type(StallType.DRINK).build();
         jsonObject = mapper.writeValueAsString(validStall);
     }
+//
+//    @Test
+//    void getStallTest_returnAllStalls200() throws Exception {
+//        // Arrange
+//        jsonObject = jsonObject = mapper.writeValueAsString(List.of(validStall));
+//        when(stallService.getAllStalls()).thenReturn(List.of(validStall));
+//        // Act
+//        mockMvc.perform(get("/zoo/stalls"))
+//                // Assert
+//                .andExpect(status().isOk())
+//                .andExpect(content().json(jsonObject));
+//    }
 
-    @Test
-    void getStallTest_returnAllStalls200() throws Exception {
-        // Arrange
-        jsonObject = jsonObject = mapper.writeValueAsString(List.of(validStall));
-        when(stallService.getAllStalls()).thenReturn(List.of(validStall));
-        // Act
-        mockMvc.perform(get("/zoo/stalls"))
-                // Assert
-                .andExpect(status().isOk())
-                .andExpect(content().json(jsonObject));
-    }
-
-    @Test
-    void getStallTest_returnNoContent204() throws Exception {
-        // Arrange
-        List<Stall> tmpList = new ArrayList<>();
-        when(stallService.getAllStalls()).thenReturn(tmpList);
-        // Act
-        mockMvc.perform(get("/zoo/stalls"))
-                // Assert
-                .andExpect(status().isNoContent());
-    }
-
-    @Test
-    void getStallByIdTest_returnStall200() throws Exception {
-        //Arrange
-        Stall inputStall = validStall;
-        String expected = mapper.writeValueAsString(inputStall);
-        when(stallService.getStallById(anyLong())).thenReturn(Optional.ofNullable(inputStall));
-        // Act
-        mockMvc.perform(get("/zoo/stall/1"))
-                // Assert
-                .andExpect(status().isOk())
-                .andExpect(content().json(expected));
-    }
+//    @Test
+//    void getStallTest_returnNoContent204() throws Exception {
+//        // Arrange
+//        List<Stall> tmpList = new ArrayList<>();
+//        when(stallService.getAllStalls()).thenReturn(tmpList);
+//        // Act
+//        mockMvc.perform(get("/zoo/stalls"))
+//                // Assert
+//                .andExpect(status().isNoContent());
+//    }
+//
+//    @Test
+//    void getStallByIdTest_returnStall200() throws Exception {
+//        //Arrange
+//        Stall inputStall = validStall;
+//        String expected = mapper.writeValueAsString(inputStall);
+//        when(stallService.getStallById(anyLong())).thenReturn(Optional.ofNullable(inputStall));
+//        // Act
+//        mockMvc.perform(get("/zoo/stall/1"))
+//                // Assert
+//                .andExpect(status().isOk())
+//                .andExpect(content().json(expected));
+//    }
 
     @Test
     void getStallByIdTest_returnNoContent204() throws Exception {

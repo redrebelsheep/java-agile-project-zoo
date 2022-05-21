@@ -18,7 +18,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class StallController {
 
-    private StallService service;
+    private StallService stallService;
 
     /**
      * Gets all stalls.
@@ -26,8 +26,8 @@ public class StallController {
      * @return the all stalls
      */
     @GetMapping("/zoo/stalls")
-    public ResponseEntity<List<Stall>> getAllStalls() {
-        List<Stall> allStalls = service.getAllStalls();
+    public ResponseEntity<List<StallDTO>> getAllStalls() {
+        List<StallDTO> allStalls = stallService.getAllStalls();
         return allStalls.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(allStalls);
     }
 
@@ -38,8 +38,8 @@ public class StallController {
      * @return the stall by id
      */
     @GetMapping("/zoo/stall/{id}")
-    public ResponseEntity<Stall> getStallById(@PathVariable Long id) {
-        Optional<Stall> oneStall = service.getStallById(id);
+    public ResponseEntity<StallDTO> getStallById(@PathVariable Long id) {
+        Optional<StallDTO> oneStall = stallService.getStallById(id);
         return oneStall.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.noContent().build());
     }
 
@@ -51,7 +51,7 @@ public class StallController {
      */
     @PostMapping("/zoo/stall")
     public ResponseEntity<Stall> addStall(@RequestBody @Valid StallDTO stallDTO) {
-        Optional<Stall> optionalStall = service.addStall(stallDTO);
+        Optional<Stall> optionalStall = stallService.addStall(stallDTO);
         return optionalStall.map(value
                 -> ResponseEntity.created(URI.create("/zoo/stall/"
                 + optionalStall.get().getId())).body(value)).orElseGet(()
@@ -66,7 +66,7 @@ public class StallController {
      */
     @DeleteMapping("/zoo/stall/{id}")
     public ResponseEntity<Long> deleteStall(@PathVariable Long id) {
-        return service.deleteStall(id) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+        return stallService.deleteStall(id) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 
     /**
@@ -77,11 +77,11 @@ public class StallController {
      */
     @PutMapping("/zoo/stall")
     public ResponseEntity<Stall> putStall(@RequestBody @Valid StallDTO stallDTO) {
-        if (stallDTO.getId() != null && service.isStallAlreadyExists(stallDTO.getId())) {
-            Optional<Stall> optionalStall = service.updateStall(stallDTO);
+        if (stallDTO.getId() != null && stallService.isStallAlreadyExists(stallDTO.getId())) {
+            Optional<Stall> optionalStall = stallService.updateStall(stallDTO);
             return  ResponseEntity.ok(optionalStall.get());
         }
-        Optional<Stall> optionalStall = service.updateStall(stallDTO);
+        Optional<Stall> optionalStall = stallService.updateStall(stallDTO);
         return optionalStall.map(value
                 -> ResponseEntity.created(URI.create("/zoo/stall/" + value.getId())).body(value)).orElseGet(()
                 -> ResponseEntity.status(HttpStatus.CONFLICT).build());

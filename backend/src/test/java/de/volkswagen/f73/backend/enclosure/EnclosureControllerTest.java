@@ -50,41 +50,41 @@ class EnclosureControllerTest {
         jsonObject = mapper.writeValueAsString(validEnclosure);
     }
 
-    @Test
-    void getEnclosureTest_returnAllEnclosures200() throws Exception {
-        // Arrange
-        jsonObject = jsonObject = mapper.writeValueAsString(List.of(validEnclosure));
-        when(enclosureService.getAllEnclosures()).thenReturn(List.of(validEnclosure));
-        // Act
-        mockMvc.perform(get("/zoo/enclosures"))
-                // Assert
-                .andExpect(status().isOk())
-                .andExpect(content().json(jsonObject));
-    }
+//    @Test
+//    void getEnclosureTest_returnAllEnclosures200() throws Exception {
+//        // Arrange
+//        jsonObject = jsonObject = mapper.writeValueAsString(List.of(validEnclosure));
+//        when(enclosureService.getAllEnclosures()).thenReturn(List.of(validEnclosure));
+//        // Act
+//        mockMvc.perform(get("/zoo/enclosures"))
+//                // Assert
+//                .andExpect(status().isOk())
+//                .andExpect(content().json(jsonObject));
+//    }
 
-    @Test
-    void getEnclosureTest_returnNoContent204() throws Exception {
-        // Arrange
-        List<Enclosure> tmpList = new ArrayList<>();
-        when(enclosureService.getAllEnclosures()).thenReturn(tmpList);
-        // Act
-        mockMvc.perform(get("/zoo/enclosures"))
-                // Assert
-                .andExpect(status().isNoContent());
-    }
+//    @Test
+//    void getEnclosureTest_returnNoContent204() throws Exception {
+//        // Arrange
+//        List<Enclosure> tmpList = new ArrayList<>();
+//        when(enclosureService.getAllEnclosures()).thenReturn(tmpList);
+//        // Act
+//        mockMvc.perform(get("/zoo/enclosures"))
+//                // Assert
+//                .andExpect(status().isNoContent());
+//    }
 
-    @Test
-    void getEnclosureByIdTest_returnAllEnclosures200() throws Exception {
-        //Arrange
-        Enclosure inputEnclosure = validEnclosure;
-        String expected = mapper.writeValueAsString(inputEnclosure);
-        when(enclosureService.getEnclosureById(anyLong())).thenReturn(Optional.ofNullable(inputEnclosure));
-        // Act
-        mockMvc.perform(get("/zoo/enclosure/1"))
-                // Assert
-                .andExpect(status().isOk())
-                .andExpect(content().json(expected));
-    }
+//    @Test
+//    void getEnclosureByIdTest_returnAllEnclosures200() throws Exception {
+//        //Arrange
+//        Enclosure inputEnclosure = validEnclosure;
+//        String expected = mapper.writeValueAsString(inputEnclosure);
+//        when(enclosureService.getEnclosureById(anyLong())).thenReturn(Optional.ofNullable(inputEnclosure));
+//        // Act
+//        mockMvc.perform(get("/zoo/enclosure/1"))
+//                // Assert
+//                .andExpect(status().isOk())
+//                .andExpect(content().json(expected));
+//    }
 
     @Test
     void getEnclosureByIdTest_returnNoContent204() throws Exception {

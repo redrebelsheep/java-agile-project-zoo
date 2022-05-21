@@ -25,8 +25,10 @@ public class EnclosureDTO implements Serializable {
     @NotNull
     private BigDecimal maintenanceCosts;
 
+    @Builder.Default
     private Set<Long> staff = new HashSet<>();
 
+    @Builder.Default
     private Set<Long> animals = new HashSet<>();
 
 }

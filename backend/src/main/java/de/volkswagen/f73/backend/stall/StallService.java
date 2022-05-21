@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * The type Stall service.
@@ -16,14 +17,16 @@ public class StallService {
 
     private StallRepository stallRepository;
     private EmployeeRepository employeeRepository;
+    private StallMapper stallMapper;
 
     /**
      * Gets all stalls.
      *
      * @return the all stalls
      */
-    public List<Stall> getAllStalls() {
-        return stallRepository.findAll();
+    public List<StallDTO> getAllStalls() {
+        return stallRepository.findAll()
+                .stream().map(stall -> stallMapper.covertStallToDTO(stall)).collect(Collectors.toList());
     }
 
     /**
@@ -32,8 +35,9 @@ public class StallService {
      * @param id the id
      * @return the stall by id
      */
-    public Optional<Stall> getStallById(Long id) {
-        return stallRepository.findById(id);
+    public Optional<StallDTO> getStallById(Long id) {
+        Optional<Stall> optionalStall = stallRepository.findById(id);
+        return optionalStall.map(stall -> stallMapper.covertStallToDTO(stall));
     }
 
     /**
@@ -43,7 +47,7 @@ public class StallService {
      * @return the optional
      */
     public Optional<Stall> addStall(StallDTO stallDTO) {
-        Stall stallToAdd = convertDTOtoStall(stallDTO);
+        Stall stallToAdd = stallMapper.convertDTOtoStall(stallDTO, employeeRepository);
         return Optional.of(stallRepository.save(stallToAdd));
     }
 
@@ -69,7 +73,7 @@ public class StallService {
      * @return the optional
      */
     public Optional<Stall> updateStall(StallDTO stallDTO) {
-        Stall updateStall = convertDTOtoStall(stallDTO);
+        Stall updateStall = stallMapper.convertDTOtoStall(stallDTO, employeeRepository);
         return Optional.of(stallRepository.save(updateStall));
     }
 
@@ -82,18 +86,7 @@ public class StallService {
     public boolean isStallAlreadyExists(Long id) {
         return stallRepository.existsById(id);
     }
-    private Stall convertDTOtoStall(StallDTO stallDTO) {
-        Stall stallToAdd = Stall.builder()
-                .operatingCost(stallDTO.getOperatingCost())
-                .type(stallDTO.getType())
-                .build();
-        if (stallDTO.getSeller() != null) {
-            stallToAdd.setSeller(employeeRepository.findById(stallDTO.getSeller()).get());
-        }
-        if (stallDTO.getId() != null) {
-            stallToAdd.setId(stallDTO.getId());
-        }
-        return stallToAdd;
-    }
+
+
 
 }

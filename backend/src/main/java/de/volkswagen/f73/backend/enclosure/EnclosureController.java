@@ -24,8 +24,8 @@ public class EnclosureController {
      * @return the all enclosures
      */
     @GetMapping("/zoo/enclosures")
-    public ResponseEntity<List<Enclosure>> getAllEnclosures() {
-        List<Enclosure> allEnclosures = service.getAllEnclosures();
+    public ResponseEntity<List<EnclosureDTO>> getAllEnclosures() {
+        List<EnclosureDTO> allEnclosures = service.getAllEnclosures();
         return allEnclosures.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(allEnclosures);
     }
 
@@ -36,8 +36,8 @@ public class EnclosureController {
      * @return the enclosure by id
      */
     @GetMapping("/zoo/enclosure/{id}")
-    public ResponseEntity<Enclosure> getEnclosureById(@PathVariable Long id) {
-        Optional<Enclosure> enclosureById = service.getEnclosureById(id);
+    public ResponseEntity<EnclosureDTO> getEnclosureById(@PathVariable Long id) {
+        Optional<EnclosureDTO> enclosureById = service.getEnclosureById(id);
         return enclosureById.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.noContent().build());
     }
 

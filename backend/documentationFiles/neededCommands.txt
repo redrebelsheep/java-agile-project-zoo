@@ -2,6 +2,9 @@ mysql -h 127.0.0.1 -u root -ppassword -e "create Database zoo"
 mysql -h 127.0.0.1 -u root -ppassword -e "SHOW DATABASES"
 mysql -h 127.0.0.1 -u root -ppassword
 
+mysql -h marianmysql.mysql.database.azure.com -u AdminUser -ppasswd123456!
+
+
 
 #for docker
 mysql -u root -ppassword -e "create Database zoo"

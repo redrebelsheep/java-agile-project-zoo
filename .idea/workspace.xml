@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cbaaf6dc-331a-429c-9a43-6e2269f6efac" name="Changes" comment="" />
+    <list default="true" id="cbaaf6dc-331a-429c-9a43-6e2269f6efac" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/backend/documentationFiles/neededCommands.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/documentationFiles/neededCommands.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -9,6 +12,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="28vYsTe4M2GD6oxrw13KEMIEQGu" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -30,6 +36,7 @@
       <option name="presentableId" value="Default" />
       <updated>1652098733795</updated>
       <workItem from="1652791134681" duration="31000" />
+      <workItem from="1653122271024" duration="19000" />
     </task>
     <servers />
   </component>
