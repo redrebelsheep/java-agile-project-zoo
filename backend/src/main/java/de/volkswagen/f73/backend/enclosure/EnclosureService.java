@@ -1,7 +1,6 @@
 package de.volkswagen.f73.backend.enclosure;
 
 import de.volkswagen.f73.backend.animal.AnimalRepository;
-import de.volkswagen.f73.backend.employee.Employee;
 import de.volkswagen.f73.backend.employee.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -29,7 +28,9 @@ public class EnclosureService {
      */
     public List<EnclosureDTO> getAllEnclosures() {
         return enclosureRepository.findAll()
-                .stream().map(enclosure -> enclosureMapper.convertEnclosureToDTO(enclosure)).collect(Collectors.toList());
+                .stream()
+                .map(enclosure -> enclosureMapper.convertEnclosureToDTO(enclosure))
+                .collect(Collectors.toList());
     }
 
 
@@ -52,7 +53,8 @@ public class EnclosureService {
      */
     public Optional<Enclosure> addEnclosure(EnclosureDTO enclosureDTO) {
 
-        Enclosure enclosureToAdd = enclosureMapper.convertDTOtoEnclosure(enclosureDTO,employeeRepository, animalRepository );
+        Enclosure enclosureToAdd = enclosureMapper.convertDTOtoEnclosure(enclosureDTO, employeeRepository,
+                animalRepository);
 
         return Optional.of(enclosureRepository.save(enclosureToAdd));
     }
@@ -78,7 +80,7 @@ public class EnclosureService {
      * @return the optional
      */
     public Optional<Enclosure> updateEnclosure(EnclosureDTO enclosureDTO) {
-        Enclosure enclosureToUpdate =  enclosureMapper.convertDTOtoEnclosure(enclosureDTO,employeeRepository, animalRepository );
+        Enclosure enclosureToUpdate = enclosureMapper.convertDTOtoEnclosure(enclosureDTO, employeeRepository, animalRepository);
         return Optional.of(enclosureRepository.save(enclosureToUpdate));
     }
 

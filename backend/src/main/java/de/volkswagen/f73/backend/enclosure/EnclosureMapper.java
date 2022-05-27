@@ -26,7 +26,8 @@ public class EnclosureMapper {
                 .builder()
                 .id(enclosure.getId())
                 .name(enclosure.getName())
-                .maintenanceCosts(enclosure.getMaintenanceCosts()).build();
+                .maintenanceCosts(enclosure.getMaintenanceCosts())
+                .build();
         setStaffForDTO(enclosure, enclosureDTO);
         setAnimalsForDTO(enclosure, enclosureDTO);
         return enclosureDTO;

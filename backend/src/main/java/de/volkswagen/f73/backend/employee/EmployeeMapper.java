@@ -9,14 +9,17 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.HashSet;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Getter
 public class EmployeeMapper {
-    public Employee convertDTOtoEmployee(EmployeeDTO employeeDTO, EnclosureRepository enclosureRepository, AnimalRepository animalRepository, StallRepository stallRepository ) {
-        Employee employee = Employee.builder().name(employeeDTO.getName()).Salary(employeeDTO.getSalary()).job(employeeDTO.getJob()).build();
+    public Employee convertDTOtoEmployee(EmployeeDTO employeeDTO, EnclosureRepository enclosureRepository, AnimalRepository animalRepository, StallRepository stallRepository) {
+        Employee employee = Employee.builder()
+                .name(employeeDTO.getName())
+                .Salary(employeeDTO.getSalary())
+                .job(employeeDTO.getJob())
+                .build();
         setEnClosuresForEmployee(employeeDTO, enclosureRepository, employee);
         setResponsibilityAnimalsForEmployee(employeeDTO, animalRepository, employee);
         setStallForEmployee(employeeDTO, stallRepository, employee);
@@ -24,7 +27,7 @@ public class EmployeeMapper {
         return employee;
     }
 
-    public EmployeeDTO convertEmployeeToDTO(Employee employee){
+    public EmployeeDTO convertEmployeeToDTO(Employee employee) {
         EmployeeDTO employeeDTO = EmployeeDTO.builder()
                 .id(employee.getId())
                 .name(employee.getName())
@@ -38,20 +41,29 @@ public class EmployeeMapper {
     }
 
     private void setStallForDTO(Employee employee, EmployeeDTO employeeDTO) {
-        if(employee.getStall() != null){
-           employeeDTO.setStall(employee.getStall().getId());
+        if (employee.getStall() != null) {
+            employeeDTO.setStall(employee.getStall()
+                    .getId());
         }
     }
 
     private void setAnimalsForDTO(Employee employee, EmployeeDTO employeeDTO) {
-        if(employee.getResponsibilityAnimals() != null && !employee.getResponsibilityAnimals().isEmpty()) {
-            employeeDTO.setResponsibilityAnimals(employee.getResponsibilityAnimals().stream().map(Animal::getId).collect(Collectors.toSet()));
+        if (employee.getResponsibilityAnimals() != null && !employee.getResponsibilityAnimals()
+                .isEmpty()) {
+            employeeDTO.setResponsibilityAnimals(employee.getResponsibilityAnimals()
+                    .stream()
+                    .map(Animal::getId)
+                    .collect(Collectors.toSet()));
         }
     }
 
     private void setEnclosuresForDTO(Employee employee, EmployeeDTO employeeDTO) {
-        if(employee.getEnclosures()!= null && !employee.getEnclosures().isEmpty()){
-            employeeDTO.setEnclosures(employee.getEnclosures().stream().map(Enclosure::getId).collect(Collectors.toSet()));
+        if (employee.getEnclosures() != null && !employee.getEnclosures()
+                .isEmpty()) {
+            employeeDTO.setEnclosures(employee.getEnclosures()
+                    .stream()
+                    .map(Enclosure::getId)
+                    .collect(Collectors.toSet()));
         }
     }
 
@@ -69,7 +81,8 @@ public class EmployeeMapper {
 
     private void setResponsibilityAnimalsForEmployee(EmployeeDTO employeeDTO, AnimalRepository animalRepository, Employee employee) {
         if (employeeDTO.getResponsibilityAnimals() != null && !employeeDTO.getResponsibilityAnimals().isEmpty()) {
-            employee.setResponsibilityAnimals(new HashSet<>(animalRepository.findAllById(employeeDTO.getResponsibilityAnimals())));
+            employee.setResponsibilityAnimals(
+                    new HashSet<>(animalRepository.findAllById(employeeDTO.getResponsibilityAnimals())));
         }
     }
 

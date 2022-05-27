@@ -26,7 +26,8 @@ public class EnclosureController {
     @GetMapping("/zoo/enclosures")
     public ResponseEntity<List<EnclosureDTO>> getAllEnclosures() {
         List<EnclosureDTO> allEnclosures = service.getAllEnclosures();
-        return allEnclosures.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(allEnclosures);
+        return allEnclosures.isEmpty() ? ResponseEntity.noContent()
+                .build() : ResponseEntity.ok(allEnclosures);
     }
 
     /**
@@ -38,7 +39,9 @@ public class EnclosureController {
     @GetMapping("/zoo/enclosure/{id}")
     public ResponseEntity<EnclosureDTO> getEnclosureById(@PathVariable Long id) {
         Optional<EnclosureDTO> enclosureById = service.getEnclosureById(id);
-        return enclosureById.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.noContent().build());
+        return enclosureById.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.noContent()
+                        .build());
     }
 
     /**
@@ -51,8 +54,10 @@ public class EnclosureController {
     public ResponseEntity<Enclosure> addEnclosure(@RequestBody @Valid EnclosureDTO enclosureDTO) {
         Optional<Enclosure> optionalEnClosure = service.addEnclosure(enclosureDTO);
         return optionalEnClosure.map(value
-                -> ResponseEntity.created(URI.create("/zoo/enclosures")).body(value)).orElseGet(()
-                -> ResponseEntity.badRequest().build());
+                -> ResponseEntity.created(URI.create("/zoo/enclosures"))
+                .body(value)).orElseGet(()
+                -> ResponseEntity.badRequest()
+                .build());
     }
 
     /**
@@ -63,7 +68,9 @@ public class EnclosureController {
      */
     @DeleteMapping("/zoo/enclosure/{id}")
     public ResponseEntity<Long> deleteEnclosure(@PathVariable Long id) {
-        return service.deleteEnclosure(id) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+        return service.deleteEnclosure(id) ? ResponseEntity.noContent()
+                .build() : ResponseEntity.notFound()
+                .build();
     }
 
     /**
@@ -79,7 +86,8 @@ public class EnclosureController {
             return ResponseEntity.ok(optionalEnClosure.get());
         }
         Optional<Enclosure> optionalEnClosure = service.updateEnclosure(enclosureDTO);
-        return ResponseEntity.created(URI.create("/zoo/enclosures")).body(optionalEnClosure.get());
+        return ResponseEntity.created(URI.create("/zoo/enclosures"))
+                .body(optionalEnClosure.get());
     }
 
 }
