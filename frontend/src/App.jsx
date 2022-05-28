@@ -1,11 +1,11 @@
 import {Button} from '@mui/material';
 import {theme} from './theme'
 import { ThemeProvider } from '@mui/material';
-import MainPage from './components/MainPage.jsx'
-import Rightbar from './components/Rightbar.jsx'
-import Sidebar from './components/Sidebar.jsx'
+import MainPage from './pages/MainPage.jsx'
+import Sidebar from './components/sidebar/Sidebar.jsx'
 import {Box, Stack} from '@mui/material';
-import Navbar from './components/Navbar.jsx';
+import Navbar from './components/navbar/Navbar.jsx';
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 
 const App = () => {
   return (
@@ -16,9 +16,13 @@ const App = () => {
       <Navbar/>
       <Stack direction="row" spacing={3} justifyContent="space-between">
       <Sidebar/>
-      <MainPage/>
-      <Rightbar/>
-      </Stack>
+      <Router>
+          <Routes>
+              <Route path="/" />
+              <Route path="/main" element={<MainPage/>}/>
+          </Routes>
+      </Router>
+      </Stack> 
     </Box>
   );
 };

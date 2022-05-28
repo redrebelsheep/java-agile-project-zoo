@@ -1,10 +1,10 @@
 import React from 'react'
 import {Box} from '@mui/material';
 
-const MainPage = () => {
+const Main = () => {
   return (
       <Box bgcolor="red" flex={4} p={2}>MainPage</Box>
   )
 }
 
-export default MainPage
+export default Main
