@@ -2,17 +2,38 @@ import React from "react";
 import Main from "../components/main/Main.jsx";
 import Rightbar from "../components/main/Rightbar.jsx";
 import { Box, Stack } from "@mui/material";
-import Animal from "../models/Animal"
 
-const animalTemp = new Animal(1, "Manfred", "Katze", "12", "gehäge", "arzt");
-const animalTemp2 = new Animal(2, "Manfred", "Katze", "12", "gehäge", "arzt");
-const animalArray = [animalTemp, animalTemp2]
-
+const animalTempArray = [
+    {
+        "id": 1,
+        "species": "Eisbär",
+        "name": "manfred",
+        "subsistenceCosts": 22.22,
+        "enclosure": null,
+        "vet": 1
+    },
+    {
+        "id": 2,
+        "species": "Eisbär",
+        "name": "manfredleer",
+        "subsistenceCosts": 22.22,
+        "enclosure": null,
+        "vet": null
+    },
+    {
+        "id": 3,
+        "species": "Eisbär",
+        "name": "Paul",
+        "subsistenceCosts": 22.22,
+        "enclosure": 1,
+        "vet": 1
+    },
+]
 const MainPage = () => {
   return (
     <Box bgcolor="yellow" flex={4}>
       <Stack direction="row" spacing={3} p={2} justifyContent="space-between">
-        <Main animals={animalArray} />
+        <Main animals={animalTempArray} />
         <Rightbar />
       </Stack>
     </Box>
