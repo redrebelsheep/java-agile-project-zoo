@@ -9,13 +9,11 @@ import de.volkswagen.f73.backend.stall.Stall;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * The type Employee.
@@ -35,7 +33,7 @@ public class Employee implements Serializable {
     @NotNull
     private String name;
     @NotNull
-    private BigDecimal Salary;
+    private BigDecimal salary;
     @NotNull
     @Enumerated(EnumType.STRING)
     private Job job;

@@ -17,7 +17,7 @@ public class EmployeeMapper {
     public Employee convertDTOtoEmployee(EmployeeDTO employeeDTO, EnclosureRepository enclosureRepository, AnimalRepository animalRepository, StallRepository stallRepository) {
         Employee employee = Employee.builder()
                 .name(employeeDTO.getName())
-                .Salary(employeeDTO.getSalary())
+                .salary(employeeDTO.getSalary())
                 .job(employeeDTO.getJob())
                 .build();
         setEnClosuresForEmployee(employeeDTO, enclosureRepository, employee);

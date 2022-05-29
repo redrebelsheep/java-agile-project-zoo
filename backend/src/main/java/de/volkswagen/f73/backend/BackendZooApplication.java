@@ -1,7 +1,6 @@
 package de.volkswagen.f73.backend;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import de.volkswagen.f73.backend.animal.Animal;
 import de.volkswagen.f73.backend.animal.AnimalRepository;
 import de.volkswagen.f73.backend.employee.Employee;
@@ -12,17 +11,12 @@ import de.volkswagen.f73.backend.enclosure.EnclosureRepository;
 import de.volkswagen.f73.backend.stall.Stall;
 import de.volkswagen.f73.backend.stall.StallRepository;
 import de.volkswagen.f73.backend.stall.StallType;
-import de.volkswagen.f73.backend.zoo_history.ZooHistory;
-import de.volkswagen.f73.backend.zoo_history.ZooHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
@@ -48,8 +42,8 @@ public class BackendZooApplication implements CommandLineRunner {
 
         Enclosure enclosure = Enclosure.builder().name("Africa").maintenanceCosts(new BigDecimal("22.22")).build();
         Enclosure enclosure2 = Enclosure.builder().name("leerer").maintenanceCosts(new BigDecimal("22.22")).build();
-        Employee employee = Employee.builder().name("Lars").job(Job.SELLER).Salary(new BigDecimal(2)).build();
-        Employee employeeMarian = Employee.builder().name("mariantest").job(Job.KEEPER).Salary(new BigDecimal(2)).build();
+        Employee employee = Employee.builder().name("Lars").job(Job.SELLER).salary(new BigDecimal(2)).build();
+        Employee employeeMarian = Employee.builder().name("mariantest").job(Job.KEEPER).salary(new BigDecimal(2)).build();
         Employee validEmployee =  employeeRepository.save(employee);
          Enclosure validEnclosure = enclosureRepository.save(enclosure);
         Animal paul = Animal.builder().name("Paul").species("Eisbär").vet(validEmployee).enclosure(validEnclosure).subsistenceCosts(new BigDecimal("22.22")).build();
