@@ -1,4 +1,3 @@
-import {Button} from '@mui/material';
 import MainPage from './pages/MainPage.jsx'
 import Sidebar from './components/sidebar/Sidebar.jsx'
 import {Box, Stack} from '@mui/material';
@@ -7,6 +6,7 @@ import Navbar from './components/navbar/Navbar.jsx';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import {theme}  from './components/theme/theme.js';
 import { ThemeProvider } from '@mui/material';
+import TestPageForAxios from "./pages/TestPageForAxios";
 
 
 const App = () => {
@@ -22,7 +22,7 @@ const App = () => {
       <Sidebar/>
       <Router>
           <Routes>
-              <Route path="/" element={<MainPage/>}/>
+              <Route path="/" element={<TestPageForAxios/>}/>
           </Routes>
       </Router>
       </Stack>
