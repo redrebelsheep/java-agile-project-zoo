@@ -31,7 +31,7 @@ public class GlobalBeansConfiguration {
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowCredentials(true);
-          corsConfiguration.setAllowedOrigins(Collections.singletonList("http://localhost:3000"));
+          corsConfiguration.setAllowedOrigins(Collections.singletonList("http://localhost:3001"));
 //        corsConfiguration.setAllowedOrigins(Collections.singletonList("http://127.0.0.1:5500"));
         corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
                                                           "Accept", "Authorization", "Origin, Accept", "X-Requested-With",
