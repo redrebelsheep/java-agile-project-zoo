@@ -31,6 +31,9 @@ import java.util.Collections;
 import java.util.Set;
 
 
+/**
+ * The type Backend zoo application.
+ */
 @SpringBootApplication
 public class BackendZooApplication implements CommandLineRunner {
 
@@ -43,6 +46,12 @@ public class BackendZooApplication implements CommandLineRunner {
     @Autowired
     private StallRepository stallRepository;
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     * @throws JsonProcessingException the json processing exception
+     */
     public static void main(String[] args) throws JsonProcessingException {
         SpringApplication.run(BackendZooApplication.class, args);
     }
