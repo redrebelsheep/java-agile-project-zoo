@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cbaaf6dc-331a-429c-9a43-6e2269f6efac" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/backend/documentationFiles/neededCommands.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/documentationFiles/neededCommands.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/volkswagen/f73/backend/animal/AnimalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/volkswagen/f73/backend/animal/AnimalController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/de/volkswagen/f73/backend/animal/AnimalControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/de/volkswagen/f73/backend/animal/AnimalControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +28,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -37,6 +40,12 @@
       <updated>1652098733795</updated>
       <workItem from="1652791134681" duration="31000" />
       <workItem from="1653122271024" duration="19000" />
+      <workItem from="1654236542950" duration="10000" />
+      <workItem from="1654236567534" duration="7000" />
+      <workItem from="1654593853652" duration="272000" />
+      <workItem from="1654626233292" duration="11000" />
+      <workItem from="1654712803366" duration="2370000" />
+      <workItem from="1654772924688" duration="82000" />
     </task>
     <servers />
   </component>
