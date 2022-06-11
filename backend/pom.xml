@@ -15,7 +15,9 @@
   <name>backend zoo</name>  
   <description>Backend for Agile Java Project Zoo</description>  
   <properties> 
-    <java.version>11</java.version> 
+    <java.version>11</java.version>
+    <zalando.problem.version>0.27.1</zalando.problem.version>
+    <zalando.problem.web.version>0.27.0</zalando.problem.web.version>
   </properties>  
   <dependencies> 
     <dependency> 
@@ -62,7 +64,18 @@
       <groupId>org.springdoc</groupId>  
       <artifactId>springdoc-openapi-ui</artifactId>  
       <version>1.6.7</version> 
-    </dependency>  
+    </dependency>
+    <dependency>
+      <groupId>org.zalando</groupId>
+      <artifactId>problem</artifactId>
+      <version>${zalando.problem.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.zalando</groupId>
+      <artifactId>problem-spring-web</artifactId>
+      <version>${zalando.problem.web.version}</version>
+    </dependency>
+
     <!--		swagger dependency for swagger -->  
     <!--		for own validatoren -->  
     <!--        <dependency>-->  

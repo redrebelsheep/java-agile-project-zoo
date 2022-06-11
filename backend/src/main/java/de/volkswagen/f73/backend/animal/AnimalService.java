@@ -85,6 +85,9 @@ public class AnimalService {
      */
     public Optional<AnimalDTO> getAnimalById(Long id) {
         Optional<Animal> getOptionalAnimal = animalRepository.findById(id);
+        if(getOptionalAnimal.isEmpty()){
+            throw new NoSuchAnimalException("gibt das Animal nicht");
+        }
         return getOptionalAnimal.map(animal -> animalMapper.convertAnimalToDTO(animal));
     }
 
