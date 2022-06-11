@@ -1,5 +1,6 @@
 package de.volkswagen.f73.backend.animal;
 
+import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -62,7 +63,7 @@ public class AnimalController {
      * @return the response entity
      */
     @DeleteMapping("/zoo/animal/{id}")
-    public ResponseEntity<Long> deleteAnimal(@PathVariable Long id) {
+    public ResponseEntity<Long> deleteAnimal(@ApiParam(value = "id", required = true)@PathVariable Long id) {
         return service.deleteAnimal(id) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 
@@ -82,5 +83,6 @@ public class AnimalController {
         Optional<Animal> optionalAnimal = service.updateAnimal(animalDTO);
         return ResponseEntity.created(URI.create("/zoo/animals")).body(optionalAnimal.get());
     }
+
 
 }

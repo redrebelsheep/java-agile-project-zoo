@@ -127,6 +127,7 @@ class AnimalControllerTest {
         mockMvc.perform(post("/zoo/animal").contentType(MediaType.APPLICATION_JSON).content(invalidJson))
                 // Assert
                 .andExpect(status().isBadRequest());
+
     }
 
     @Test
