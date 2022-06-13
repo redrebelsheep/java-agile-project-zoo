@@ -29,6 +29,7 @@ public class GlobalExceptionController implements ProblemHandling {
         // 1. Create payloud containing exception details
         CustomApiException e = new CustomApiException(exception.getMessage(), exception, BAD_REQUEST,
                                                       ZonedDateTime.now(ZoneId.of("Z")));
+        return null;
     }
 
 
