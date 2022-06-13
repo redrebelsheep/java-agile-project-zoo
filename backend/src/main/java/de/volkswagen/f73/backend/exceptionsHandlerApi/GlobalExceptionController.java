@@ -12,6 +12,8 @@ import org.zalando.problem.ThrowableProblem;
 import org.zalando.problem.spring.common.HttpStatusAdapter;
 import org.zalando.problem.spring.web.advice.ProblemHandling;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,6 +24,15 @@ public class GlobalExceptionController implements ProblemHandling {
 
     private static final String KEY_ERROR_CODE = "error_code";
     private static final String KEY_PARAMS = "params";
+
+    public ResponseEntity<Object> handleNoSuchAnimalException(NoSuchAnimalException exception){
+        // 1. Create payloud containing exception details
+        CustomApiException e = new CustomApiException(exception.getMessage(), exception, BAD_REQUEST,
+                                                      ZonedDateTime.now(ZoneId.of("Z")));
+    }
+
+
+
 
 //    @ExceptionHandler
 //    public ResponseEntity<Problem> handleIllegalArgumentException(final NativeWebRequest request,
