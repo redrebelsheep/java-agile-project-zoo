@@ -1,6 +1,7 @@
 package de.volkswagen.f73.backend.exceptionsHandlerApi;
 
 import de.volkswagen.f73.backend.animal.NoSuchAnimalException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -25,11 +26,13 @@ public class GlobalExceptionController implements ProblemHandling {
     private static final String KEY_ERROR_CODE = "error_code";
     private static final String KEY_PARAMS = "params";
 
+    @ExceptionHandler(value = {NoSuchAnimalException.class})
     public ResponseEntity<Object> handleNoSuchAnimalException(NoSuchAnimalException exception){
         // 1. Create payloud containing exception details
-        CustomApiException e = new CustomApiException(exception.getMessage(), exception, BAD_REQUEST,
-                                                      ZonedDateTime.now(ZoneId.of("Z")));
-        return null;
+        HttpStatus badRequest = BAD_REQUEST;
+        CustomApiException apiException = new CustomApiException(exception.getMessage(), exception, badRequest,
+                                                                 ZonedDateTime.now(ZoneId.of("Z")));
+        return new ResponseEntity<>(apiException,badRequest);
     }
 
 
