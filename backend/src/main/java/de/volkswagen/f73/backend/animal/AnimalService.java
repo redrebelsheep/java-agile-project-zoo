@@ -32,6 +32,20 @@ public class AnimalService {
     }
 
     /**
+     * Gets animal by id.
+     *
+     * @param id the id
+     * @return the animal by id
+     */
+    public Optional<AnimalDTO> getAnimalById(Long id) {
+        Optional<Animal> getOptionalAnimal = animalRepository.findById(id);
+        if(getOptionalAnimal.isEmpty()){
+            throw new NoSuchAnimalException("gibt das Animal nicht");
+        }
+        return getOptionalAnimal.map(animal -> animalMapper.convertAnimalToDTO(animal));
+    }
+
+    /**
      * Add animal optional.
      *
      * @param animalDTO the animal dto
@@ -77,19 +91,7 @@ public class AnimalService {
         return Optional.of((animalRepository.save(animalToUpdate)));
     }
 
-    /**
-     * Gets animal by id.
-     *
-     * @param id the id
-     * @return the animal by id
-     */
-    public Optional<AnimalDTO> getAnimalById(Long id) {
-        Optional<Animal> getOptionalAnimal = animalRepository.findById(id);
-        if(getOptionalAnimal.isEmpty()){
-            throw new NoSuchAnimalException("gibt das Animal nicht");
-        }
-        return getOptionalAnimal.map(animal -> animalMapper.convertAnimalToDTO(animal));
-    }
+
 
 //    /**
 //     * Convert dt oto animal animal.

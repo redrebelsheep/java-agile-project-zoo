@@ -7,13 +7,11 @@ import java.time.ZonedDateTime;
 public class CustomApiException {
 
   private final String message;
-  private final Throwable cause;
   private final HttpStatus status;
   private final ZonedDateTime timeStamp;
 
-  public CustomApiException(String message, Throwable cause, HttpStatus status, ZonedDateTime timeStamp) {
+  public CustomApiException(String message, HttpStatus status, ZonedDateTime timeStamp) {
     this.message = message;
-    this.cause = cause;
     this.status = status;
     this.timeStamp = timeStamp;
   }
@@ -22,9 +20,6 @@ public class CustomApiException {
     return message;
   }
 
-  public Throwable getCause() {
-    return cause;
-  }
 
   public HttpStatus getStatus() {
     return status;
